@@ -18,12 +18,13 @@ services:
     image: postgres:15
     container_name: pSQL
     entrypoint:
+      DATABASE_HOST: 127.0.0.1
       POSTGRES_DB: "pdb"
       POSTGRES_USER: "kyberlox"
       POSTGRES_PASSWORD: "4179"
     volumes:
-      - ./SQL:/var/lib/postgresql/data
-      - ./create_db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./SQLdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - 5432:5432
     networks:

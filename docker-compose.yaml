@@ -21,7 +21,7 @@ services:
     build:
       dockerfile: python.dockerfile
     image: ToDo/python
-    container_name: python/fastapi
+    container_name: python
     volumes:
       - ./files:/data/ToDo
     ports:

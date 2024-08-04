@@ -8,7 +8,7 @@ CREATE TABLE partition (
 CREATE TABLE priority (
     Id SERIAL PRIMARY KEY,
     name CHARACTER VARYING(150),
-    color CHARACTER VARYING(150),
+    color CHARACTER VARYING(150)
 );
 
 CREATE TABLE task (

@@ -2,8 +2,7 @@ CREATE TABLE partition (
   Id SERIAL PRIMARY KEY,
   name CHARACTER VARYING(150),
   description CHARACTER VARYING(150),
-  color CHARACTER VARYING(150),
-  preview_file_id INTEGER REFERENCES file (Id)
+  color CHARACTER VARYING(150)
 );
 
 CREATE TABLE priority (

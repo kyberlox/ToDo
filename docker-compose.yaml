@@ -19,13 +19,28 @@ services:
   
   fastapi:
     build:
-      dockerfile: python.dockerfile
+      context: ./python
+      dockerfile: Dockerfile
     image: ToDo/python
-    container_name: python
+    container_name: fastapi
     volumes:
-      - ./files:/data/ToDo
+      - ./code:/data/ToDo
     ports:
       - 8000:8000
+    networks:
+      - app-network
+  
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    depends_on:
+      # `fastapi`Because the service (container) needs to be started first`depends_on`Is specified
+      - fastapi
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d/
+      - ./code:/data/ToDo
     networks:
       - app-network
 

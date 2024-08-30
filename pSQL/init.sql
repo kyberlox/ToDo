@@ -1,8 +1,9 @@
-CREATE TABLE partition (
+CREATE TABLE task (
   Id SERIAL PRIMARY KEY,
   name CHARACTER VARYING(150),
   description CHARACTER VARYING(150),
   color CHARACTER VARYING(150)
+  file_path CHARACTER VARYING(150),
 );
 
 CREATE TABLE priority (
@@ -11,10 +12,10 @@ CREATE TABLE priority (
     color CHARACTER VARYING(150)
 );
 
-CREATE TABLE task (
+CREATE TABLE process (
     Id SERIAL PRIMARY KEY,
-    partition_id INTEGER REFERENCES partition (Id),
-    priority_id INTEGER REFERENCES priority (Id),
+    partition_id INTEGER REFERENCES task (Id),
+    task_id INTEGER REFERENCES priority (Id),
     name CHARACTER VARYING(150),
     description CHARACTER VARYING(150),
     preview_file_id INTEGER REFERENCES file (Id),
@@ -28,5 +29,5 @@ CREATE TABLE task (
 CREATE TABLE file (
     Id SERIAL PRIMARY KEY,
     file_path CHARACTER VARYING(150),
-    task_id INTEGER REFERENCES task (Id)
+    process_id INTEGER REFERENCES process (Id)
 );

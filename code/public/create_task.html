@@ -1,0 +1,71 @@
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="icon" href="./logo.ico"
+
+    <meta property="og:title" content="Заголовок страницы в OG">
+    <meta property="og:description" content="Описание страницы в OG">
+    <meta property="og:image" content="./logo.ico">
+  </head>
+  <body>
+    <header>
+      <h1>ToDo</h1>
+      <button  onclick="document.location='/'">К задачам</button>
+    </header>
+    <main>  
+        <div>
+            <h3>Создание задачи</h3>
+            
+            <p>Название</p>
+            <form name="publish">
+                <input class="get_name" type="text" name="task_name" />
+            </form>
+
+            <p>Описание</p>
+            <textarea class="get_descr" type="text" name="task_name" ></textarea>
+            
+            <p>Выберите картинку</p>
+            <form action="/upload_img" enctype="multipart/form-data" method="post">
+              <input id="down_img" name="file" type="file"  multiple accept="image/*,image/jpeg">
+              <input type="submit" value="Загрузить">
+            </form>
+            <!--<input type="submit" value="Загрузить" onclick="submitForm()">-->
+
+            
+            
+        </div>
+    </main>
+    <footer>
+      <h2>by Kyberlox</h2>
+    </footer>
+    <script>
+      function submitForm() {
+             let formElement = document.getElementById('down_img');
+             let data = new FormData();
+             data.append("file", formElement.files[0]);
+             fetch('upload_img', {
+                   method: 'POST',
+                   headers: {
+                    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+                    "accept-language": "ru,en;q=0.9",
+                    "cache-control": "max-age=0",
+                    "content-type": "multipart/form-data; boundary=----WebKitFormBoundaryvXkhpKhXwufElQFt",
+                    "upgrade-insecure-requests": "1"
+                   },
+                   body: data,
+                 })
+                 /*
+                 .then(resp => resp.text())  // or, resp.json(), etc.
+                 .then(data => {
+                   document.getElementById("responseArea").innerHTML = data;
+                 })
+                 .catch(error => {
+                   console.error(error);
+                 });
+                 */
+         }
+    </script>
+  </body>
+</html>
